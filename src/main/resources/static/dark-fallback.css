@@ -1,0 +1,24 @@
+/* Minimal fallback stylesheet to visually apply dark mode when the `.dark` class
+   is toggled by JavaScript. This is a small stop-gap until Tailwind is rebuilt
+   to emit class-based dark variants. */
+
+html.dark, .dark {
+  background-color: #0b1220 !important;
+  color: #e6eef8 !important;
+}
+
+html.dark body, .dark body {
+  background-color: #0b1220 !important;
+  color: #e6eef8 !important;
+}
+
+/* Links and common accents */
+html.dark a, .dark a {
+  color: #93c5fd !important; /* similar to tailwind blue-300 */
+}
+
+/* A few utility overrides so components that use bg-white/text-black at root
+   get a quick dark replacement. This won't fully replace Tailwind but gives
+   a visible toggle for testing. */
+.dark .bg-white { background-color: #0b1220 !important; }
+.dark .text-black { color: #e6eef8 !important; }

@@ -1,0 +1,5 @@
+- [x] Update script.js to wrap code in DOMContentLoaded event
+- [x] Remove pointless initial changeTheme() call
+- [x] Apply current theme on page load
+- [x] Fix changePageTheme to use classList consistently
+- [x] Test the theme change button functionality
