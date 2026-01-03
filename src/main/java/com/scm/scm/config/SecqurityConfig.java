@@ -55,9 +55,12 @@ public class SecqurityConfig {
         httpSecurity.authorizeHttpRequests(authorize->{
             // authorize.requestMatchers("/home").permitAll();
             authorize.requestMatchers("/user/**").authenticated();
+            authorize.requestMatchers("/h2-console/**").permitAll();
             authorize.anyRequest().permitAll();
-            
+
         });
+        httpSecurity.csrf(csrf -> csrf.disable());
+        httpSecurity.headers(headers -> headers.frameOptions().disable());
         httpSecurity.formLogin(Customizer.withDefaults());
         return httpSecurity.build();
     }
