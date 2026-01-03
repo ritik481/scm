@@ -12,6 +12,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Version;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,6 +47,9 @@ public class User implements UserDetails {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "user_id", updatable = false, nullable = false)
     private String userId;
+
+    @Version
+    private Long version;
     @Column(name="user_name",nullable=false)
    private String name;
    @Column(unique=true,nullable=false)
