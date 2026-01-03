@@ -4,6 +4,7 @@ package com.scm.scm.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import com.scm.scm.helpers.MessageType;
 import com.scm.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 
 
@@ -25,6 +27,12 @@ import jakarta.servlet.http.HttpSession;
 public class pageController {
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/")
+    public String index(){
+        return "redirect:/home";
+    }
+
 @RequestMapping("/home")
     public String home(Model model, HttpSession session){
         System.out.println("home page handler");
@@ -74,9 +82,14 @@ public String setTheme(@RequestBody ThemeRequest themeRequest, HttpSession sessi
 
     //processing register form
     @RequestMapping(value="/do-register", method=RequestMethod.POST)
-    public String processRegister(@ModelAttribute UserForm userForm,HttpSession session){
+    public String processRegister(@Valid @ModelAttribute UserForm userForm,BindingResult rBindingResult, HttpSession session){
        System.out.println("processing register form");
        System.out.println(userForm);
+       if (rBindingResult.hasErrors()) {
+           System.out.println("Validation errors: " + rBindingResult.getAllErrors());
+           session.setAttribute("message", new Message("Please correct the errors in the form", MessageType.red));
+           return "signup";
+       }
 
        // Check if user already exists by email
        if (userService.isUserExistsByEmail(userForm.getEmail())) {
@@ -115,7 +128,6 @@ public String setTheme(@RequestBody ThemeRequest themeRequest, HttpSession sessi
         .content("Registration Successful")
         .type(MessageType.green)
         .build();
-
        session.setAttribute("message", message);
 
         return "redirect:/signup";
