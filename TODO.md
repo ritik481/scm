@@ -1,8 +1,8 @@
-# TODO: Fix SCM Project Issues
+# Dark Mode Toggle Implementation
 
-- [x] Fix passwordEncoder method in SecqurityConfig.java to use BCryptPasswordEncoder
-- [x] Correct @Override annotations and method names in User entity
-- [x] Add UUID generation for userId in User entity
-- [x] Rename SecqurityCustomUserDetails to SecurityCustomUserDetails and update references
-- [x] Run the application to verify it starts
-- [ ] Test basic endpoints
+## Tasks
+- [x] Update navbar.html to include both sun and moon icons with appropriate classes
+- [x] Add CSS rules to dark-fallback.css to show/hide icons based on theme
+- [x] Remove manual icon class updates from script.js
+- [ ] Run the Spring Boot app to test the toggle functionality
+- [ ] Verify colors match requirements (light bg white, dark bg #111827, readable text)

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -61,7 +61,21 @@ public class SecqurityConfig {
         });
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.headers(headers -> headers.frameOptions().disable());
-        httpSecurity.formLogin(Customizer.withDefaults());
+        httpSecurity.formLogin(formLogin->{
+            formLogin.loginPage("/login");
+            formLogin.loginProcessingUrl("/authenticate");
+            formLogin.defaultSuccessUrl("/user/dashboard");
+            // formLogin.failureUrl("/login?error=true");
+            formLogin.usernameParameter("email");
+            formLogin.passwordParameter("password");
+            // formLogin.permitAll();
+        });
+        httpSecurity.logout(logout->{
+            logout.logoutUrl("/logout");
+            logout.logoutSuccessUrl("/login?logout=true");
+            logout.invalidateHttpSession(true);
+            logout.deleteCookies("JSESSIONID");
+        });
         return httpSecurity.build();
     }
     @Bean

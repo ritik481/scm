@@ -22,28 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("Theme change button not found");
     }
-
-    // Force initial theme application
-    if (currentTheme === "dark") {
-        document.documentElement.classList.add("dark");
-        document.documentElement.classList.remove("light");
-        // Update button state if present
-        const btn = document.getElementById("theme_change_button");
-        if (btn) {
-            btn.setAttribute('aria-pressed', 'true');
-            btn.querySelector('i')?.classList.remove('fa-circle-half-stroke');
-            btn.querySelector('i')?.classList.add('fa-sun');
-        }
-    } else {
-        document.documentElement.classList.add("light");
-        document.documentElement.classList.remove("dark");
-        const btn = document.getElementById("theme_change_button");
-        if (btn) {
-            btn.setAttribute('aria-pressed', 'false');
-            btn.querySelector('i')?.classList.remove('fa-circle-half-stroke');
-            btn.querySelector('i')?.classList.add('fa-moon');
-        }
-    }
 });
 
 function setTheme(theme) {
@@ -57,33 +35,20 @@ function getTheme() {
 
 function changePageTheme(theme, oldTheme) {
     setTheme(theme);
-    if (oldTheme) {
-        document.documentElement.classList.remove(oldTheme);
-    }
     if (theme === "dark") {
         document.documentElement.classList.add("dark");
-        document.documentElement.classList.remove("light");
     } else {
-        document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
     }
     console.log("Theme changed to:", theme, "Classes:", document.documentElement.className);
 
-    // Update toggle button appearance and aria state
+    // Update toggle button aria state
     const btn = document.getElementById("theme_change_button");
     if (btn) {
         if (theme === 'dark') {
             btn.setAttribute('aria-pressed', 'true');
-            btn.querySelector('i')?.classList.remove('fa-moon');
-            btn.querySelector('i')?.classList.add('fa-sun');
-            btn.classList.remove('bg-gray-100', 'text-gray-700');
-            btn.classList.add('bg-gray-800', 'text-gray-200');
         } else {
             btn.setAttribute('aria-pressed', 'false');
-            btn.querySelector('i')?.classList.remove('fa-sun');
-            btn.querySelector('i')?.classList.add('fa-moon');
-            btn.classList.remove('bg-gray-800', 'text-gray-200');
-            btn.classList.add('bg-gray-100', 'text-gray-700');
         }
     }
 

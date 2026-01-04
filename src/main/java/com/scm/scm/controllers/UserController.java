@@ -1,5 +1,7 @@
 package com.scm.scm.controllers;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +17,9 @@ public class UserController {
     }
     //user profile page
      @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String userProfile(){
+    public String userProfile(Principal principal){
+        String name=principal.getName();
+        System.out.println(name);
         return "user/profile";
     }
 
