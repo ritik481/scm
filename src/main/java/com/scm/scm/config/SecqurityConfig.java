@@ -6,14 +6,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.scm.scm.services.impl.SecurityCustomUserDetails;
+import com.scm.scm.services.CustomOAuth2UserService;
 
 @Configuration
+@EnableWebSecurity
 public class SecqurityConfig {
 
     
@@ -41,6 +44,9 @@ public class SecqurityConfig {
     @Autowired
     private SecurityCustomUserDetails userDetailsService;
 
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
@@ -56,6 +62,7 @@ public class SecqurityConfig {
             // authorize.requestMatchers("/home").permitAll();
             authorize.requestMatchers("/user/**").authenticated();
             authorize.requestMatchers("/h2-console/**").permitAll();
+            authorize.requestMatchers("/login", "/oauth2/**").permitAll();
             authorize.anyRequest().permitAll();
 
         });
@@ -76,6 +83,13 @@ public class SecqurityConfig {
             logout.invalidateHttpSession(true);
             logout.deleteCookies("JSESSIONID");
         });
+        httpSecurity.oauth2Login(oauth -> oauth
+            .loginPage("/login")
+            .userInfoEndpoint(userInfo -> userInfo
+                .userService(customOAuth2UserService)
+            )
+            .defaultSuccessUrl("/user/dashboard", true)
+        );
         return httpSecurity.build();
     }
     @Bean

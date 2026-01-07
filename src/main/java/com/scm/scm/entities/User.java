@@ -78,7 +78,7 @@ public class User implements UserDetails {
     private boolean phoneVerified=false;
 
     @Enumerated(value=EnumType.STRING)
-    private Providers provider = Providers.SELF;
+    private Providers provider = Providers.SELF.GOOGLE.GITHUB;
     private String providerUserId;
 
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)

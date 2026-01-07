@@ -1,8 +1,11 @@
-# Dark Mode Toggle Implementation
+# TODO: Fix CustomOAuth2UserService.java
 
-## Tasks
-- [x] Update navbar.html to include both sun and moon icons with appropriate classes
-- [x] Add CSS rules to dark-fallback.css to show/hide icons based on theme
-- [x] Remove manual icon class updates from script.js
-- [ ] Run the Spring Boot app to test the toggle functionality
-- [ ] Verify colors match requirements (light bg white, dark bg #111827, readable text)
+- [x] Inject UserService into CustomOAuth2UserService
+- [x] Implement logic to check if user exists by email
+- [x] If user exists, update user details
+- [x] If user doesn't exist, create new user with OAuth2 details
+- [x] Set provider based on registrationId (GOOGLE or GITHUB)
+- [x] Set providerUserId from OAuth2 user attributes
+- [x] Set emailVerified to true for OAuth2 users
+- [x] Assign default role (ROLE_USER)
+- [x] Set a dummy password for OAuth2 users

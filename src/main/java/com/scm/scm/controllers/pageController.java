@@ -2,9 +2,12 @@ package com.scm.scm.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -79,6 +82,12 @@ public String setTheme(@RequestBody ThemeRequest themeRequest, HttpSession sessi
     session.setAttribute("theme", themeRequest.getTheme());
     return "Theme set to " + themeRequest.getTheme();
 }
+@GetMapping("/oauth-success")
+public ResponseEntity<?> success(Authentication auth) {
+    // OAuth login successful
+    return ResponseEntity.ok("OAuth login successful");
+}
+
 
     //processing register form
     @RequestMapping(value="/do-register", method=RequestMethod.POST)
