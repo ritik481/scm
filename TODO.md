@@ -1,11 +1,6 @@
-# TODO: Fix CustomOAuth2UserService.java
+# TODO List for OAuthAuthenticationSuccessfulHandler Implementation
 
-- [x] Inject UserService into CustomOAuth2UserService
-- [x] Implement logic to check if user exists by email
-- [x] If user exists, update user details
-- [x] If user doesn't exist, create new user with OAuth2 details
-- [x] Set provider based on registrationId (GOOGLE or GITHUB)
-- [x] Set providerUserId from OAuth2 user attributes
-- [x] Set emailVerified to true for OAuth2 users
-- [x] Assign default role (ROLE_USER)
-- [x] Set a dummy password for OAuth2 users
+- [x] Create OAuthAuthenticationSuccessfulHandler.java in src/main/java/com/scm/scm/config/
+- [x] Implement AuthenticationSuccessHandler interface with logging and database save logic
+- [x] Wire the handler in SecqurityConfig.java for OAuth2 login success
+- [ ] Test the implementation by running the application and performing OAuth2 login

@@ -47,6 +47,9 @@ public class SecqurityConfig {
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
 
+    @Autowired
+    private OAuthAuthenticationSuccessfulHandler oAuthAuthenticationSuccessfulHandler;
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
@@ -88,6 +91,7 @@ public class SecqurityConfig {
             .userInfoEndpoint(userInfo -> userInfo
                 .userService(customOAuth2UserService)
             )
+            .successHandler(oAuthAuthenticationSuccessfulHandler)
             .defaultSuccessUrl("/user/dashboard", true)
         );
         return httpSecurity.build();
