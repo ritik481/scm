@@ -40,3 +40,5 @@ build/
 
 # ===== Maven Wrapper =====
 .mvn/wrapper/maven-wrapper.jar
+# ===== Sensitive Files =====
+.env
