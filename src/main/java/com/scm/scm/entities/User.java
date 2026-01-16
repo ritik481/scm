@@ -78,7 +78,7 @@ public class User implements UserDetails {
     private boolean phoneVerified=false;
 
     @Enumerated(value=EnumType.STRING)
-    private Providers provider = Providers.SELF.GOOGLE.GITHUB;
+    private Providers provider;
     private String providerUserId;
 
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
@@ -116,6 +116,19 @@ public class User implements UserDetails {
     @Override
     public String getPassword() {
         return this.password;
+    }
+
+    public void setImageUrl(String picture) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setImageUrl'");
+    }
+
+    public void setRolesList(List<String> of) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setEmailVerified(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
    
 }

@@ -2,6 +2,7 @@ package com.scm.scm.config;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,16 +44,43 @@ public class OAuthAuthenticationSuccessfulHandler implements AuthenticationSucce
         String name = oauth2User.getAttribute("name");
         String picture = oauth2User.getAttribute("picture");
 
+        // Determine provider based on attributes
+        Providers provider = Providers.SELF; // default
+        String providerUserId = null;
+        if (oauth2User.getAttribute("sub") != null) {
+            provider = Providers.GOOGLE;
+            providerUserId = oauth2User.getAttribute("sub").toString();
+        } else if (oauth2User.getAttribute("id") != null) {
+            provider = Providers.GITHUB;
+            providerUserId = oauth2User.getAttribute("id").toString();
+        } else {
+            providerUserId = UUID.randomUUID().toString();
+        }
+
         if (email != null && !userService.isUserExistsByEmail(email)) {
             User user = new User();
             user.setEmail(email);
             user.setName(name);
             user.setPassword("dummy");
-            user.setProvider(Providers.GOOGLE); // Assuming SELF, but should be set based on provider
-            user.setProviderUserId(UUID.randomUUID().toString());
+            user.setProvider(provider);
+            user.setProviderUserId(providerUserId);
+            user.setProfilePic(picture);
             user.setEmailVerified(true);
             user.setRolesList(List.of(AppConstants.ROLE_USER));
             userService.saveUser(user);
+        } else if (email != null) {
+            // Update existing user if needed
+            User existingUser = userService.getUserByEmail(email);
+            if (existingUser != null) {
+                existingUser.setName(name);
+                existingUser.setProfilePic(picture);
+                existingUser.setProvider(provider);
+                existingUser.setProviderUserId(providerUserId);
+                userService.saveUser(existingUser);
+            }
         }
+
+        // Redirect to dashboard or home
+        response.sendRedirect("/user/dashboard");
     }
 }
