@@ -123,12 +123,12 @@ public class User implements UserDetails {
         throw new UnsupportedOperationException("Unimplemented method 'setImageUrl'");
     }
 
-    public void setRolesList(List<String> of) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setRolesList(List<String> rolesList) {
+        this.rolesList = rolesList;
     }
 
-    public void setEmailVerified(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
     }
    
 }
