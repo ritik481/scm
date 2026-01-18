@@ -20,8 +20,11 @@
     <div th:if="${user != null}">
         <h1 class="text-2xl font-semibold mb-6">User Profile</h1>
 
+        <!-- Message Fragment -->
+        <div th:replace="~{fragments/message :: messagebox}"></div>
+
         <!-- PROFILE FORM -->
-        <form th:action="@{/profile/save}" method="post" enctype="multipart/form-data" class="space-y-8">
+        <form th:action="@{/user/profile/save}" method="post" enctype="multipart/form-data" class="space-y-8">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -94,7 +97,7 @@
                 </a>
             </div>
 
-            <form th:action="@{/profile/delete}" method="post">
+            <form th:action="@{/user/profile/delete}" method="post">
                 <button type="submit"
                         onclick="return confirm('Are you sure you want to delete your account?')"
                         class="px-6 py-2 bg-red-600 text-white rounded-lg">
