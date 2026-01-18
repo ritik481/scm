@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,5 +8,95 @@
 <body>
     <h1>this is user dashboard</h1>
     <a th:href="@{'/logout'}">Logout</a>
+</body>
+</html> -->
+<!DOCTYPE html>
+
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <title>Dashboard | Smart Contact Manager</title>
+</head>
+<body>
+<div id="content" class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+
+```
+<div class="max-w-7xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- LEFT SIDEBAR : User Profile (1/4) -->
+        <aside class="lg:col-span-1">
+            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-6 text-center">
+
+                <!-- Profile Image -->
+                <div class="relative mx-auto w-28 h-28 mb-4">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d"
+                         alt="User Profile"
+                         class="w-28 h-28 rounded-full object-cover border-4 border-indigo-500" />
+                </div>
+
+                <!-- User Info -->
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                    John Doe
+                </h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    johndoe@email.com
+                </p>
+
+                <div class="mt-6 space-y-4 text-left">
+                    <div class="flex items-center gap-3">
+                        <img src="https://img.icons8.com/fluency/48/phone.png" class="w-6 h-6" alt="Phone" />
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">+91 98765 43210</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <img src="https://img.icons8.com/fluency/48/email.png" class="w-6 h-6" alt="Email" />
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">john@scm.com</span>
+                    </div>
+                </div>
+
+                <!-- Edit Profile -->
+                <a th:href="@{/profile}" class="block mt-8 w-full text-center py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
+                    Edit Profile
+                </a>
+            </div>
+        </aside>
+
+        <!-- RIGHT CONTENT : Contacts (3/4) -->
+        <main class="lg:col-span-3">
+            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-10 flex flex-col items-center justify-center min-h-[420px]">
+
+                <!-- Empty State Illustration -->
+                <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980"
+                     alt="No Contacts"
+                     class="w-60 mb-6 opacity-80 rounded-2xl" />
+
+                <!-- Empty Message -->
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    No Contacts Found
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-center max-w-md mb-8">
+                    You haven’t added any contacts yet. Start building your smart contact list by adding your first contact.
+                </p>
+
+                <!-- Add Contact Button -->
+                <a th:href="@{/contacts/add}"
+                   class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add New Contact
+                </a>
+            </div>
+        </main>
+
+    </div>
+</div>
+```
+
+</div>
+
+<script>
+    console.log("Dashboard loaded");
+</script>
+
 </body>
 </html>

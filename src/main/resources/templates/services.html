@@ -1,15 +1,109 @@
 <!DOCTYPE html>
+
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
-<head>  
-    <title>Services Page</title>
+<head>
+    <title>Our Services</title>
 </head>
 <body>
-    <div id="content">
-        <h1>Welcome To Services Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odio assumenda recusandae iure aliquam nulla exercitationem? Quidem, similique. Amet accusantium illum asperiores facere facilis cumque vero eveniet sit qui recusandae.</p>
+<div id="content" class="bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+
+```
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Technology background"
+             class="w-full h-full object-cover opacity-20" />
     </div>
-    <script>
-        console.log("This is services page");
-    </script>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
+            Services Built for the Modern Web
+        </h1>
+        <p class="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+            We provide scalable, secure, and performance-driven digital solutions designed to help your business grow in a competitive digital landscape.
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-14">
+        What We Offer
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        <!-- Service Card -->
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Web Development"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Web Development</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                Modern, responsive, and secure web applications built using cutting-edge technologies.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="Backend Development"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Backend Engineering</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                Robust APIs and microservices with strong security, scalability, and performance.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" alt="Cloud Services"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Cloud Solutions</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                Cloud-native deployments, DevOps automation, and scalable infrastructure solutions.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" alt="UI UX Design"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">UI / UX Design</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                User-centered designs focused on clarity, accessibility, and delightful experiences.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Security"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Security & Auth</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                Authentication, authorization, and data protection aligned with industry standards.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-lg hover:shadow-xl transition p-6">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Consulting"
+                 class="rounded-2xl mb-6 h-40 w-full object-cover" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Technical Consulting</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+                Architecture reviews, performance optimization, and long-term technical guidance.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Call To Action -->
+<section class="bg-blue-600 py-20 text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">Ready to Build Something Great?</h2>
+    <p class="text-blue-100 mb-8">Let’s discuss your idea and turn it into a scalable solution.</p>
+    <a th:href="@{/contact}" class="inline-block px-8 py-4 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-100 transition">
+        Contact Us
+    </a>
+</section>
+```
+
+</div>
+
+<script>
+    console.log("This is services page");
+</script>
+
 </body>
 </html>

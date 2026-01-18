@@ -1,15 +1,117 @@
 <!DOCTYPE html>
+
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
-<head>  
-    <title>Contact Us Page</title>
+<head>
+    <title>Contact Us</title>
 </head>
 <body>
-    <div id="content">
-        <h1>Welcome To Contact Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odio assumenda recusandae iure aliquam nulla exercitationem? Quidem, similique. Amet accusantium illum asperiores facere facilis cumque vero eveniet sit qui recusandae.</p>
+<div id="content" class="bg-gradient-to-br from-indigo-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+
+```
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216"
+             alt="Contact Smart Contact Manager"
+             class="w-full h-full object-cover opacity-25" />
     </div>
-    <script>
-        console.log("This is contact page");
-    </script>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
+            Contact Smart Contact Manager
+        </h1>
+        <p class="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+            We would love to hear from you. Reach out for support, feedback, or any queries about managing your contacts smarter.
+        </p>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Contact Info -->
+        <div>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                Get in Touch
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
+                Smart Contact Manager helps you securely store, organize, and manage your contacts in the cloud. Our team is always ready to help you.
+            </p>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <img src="https://img.icons8.com/fluency/48/email.png" alt="Email" class="w-10 h-10" />
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                        <p class="font-medium text-gray-900 dark:text-white">support@smartcontactmanager.com</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <img src="https://img.icons8.com/fluency/48/phone.png" alt="Phone" class="w-10 h-10" />
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Phone</p>
+                        <p class="font-medium text-gray-900 dark:text-white">+91 98765 43210</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <img src="https://img.icons8.com/fluency/48/marker.png" alt="Location" class="w-10 h-10" />
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Location</p>
+                        <p class="font-medium text-gray-900 dark:text-white">India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 md:p-10">
+            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+                Send a Message
+            </h3>
+            <form class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                    <input type="text" required
+                           class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-indigo-600 focus:outline-none" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                    <input type="email" required
+                           class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-indigo-600 focus:outline-none" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                    <textarea rows="4" required
+                              class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-gray-200 dark:border-gray-700 py-6 text-center">
+    <p class="text-sm text-gray-600 dark:text-gray-400">
+        © Smart Contact Manager. All rights reserved.
+    </p>
+</footer>
+```
+
+</div>
+
+<script>
+    console.log("This is contact page");
+</script>
+
 </body>
 </html>
