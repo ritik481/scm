@@ -28,7 +28,6 @@ public class UserForm {
    @Size(min = 10, max = 12, message = "Phone number must be between 10 and 15 characters")
    private String phoneNumber;
 
-   @NotBlank(message = "Password cannot be blank")
    private String password;
 
 
