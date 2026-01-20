@@ -34,6 +34,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //add contact page
+    @RequestMapping(value = "/addcontact", method = RequestMethod.GET)
+    public String addContactPage(Authentication authentication, Model model){
+        String email;
+           if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            email = oauthToken.getPrincipal().getAttribute("email");
+        } else {
+            email = authentication.getName();
+        }
+        User user = userService.getUserByEmail(email);
+        if(user == null){
+            return "redirect:/login";
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("contacts", user.getContacts());
+        return "user/addcontact";
+    }
+
     //user dashboard
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String userDashboard(Authentication authentication, Model model){

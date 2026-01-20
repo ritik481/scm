@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Add Contact</title>
+</head>
+
+<body class="bg-slate-50">
+<div id="content" class="min-h-screen px-4 py-10">
+
+    <!-- No Contact State -->
+    <div th:if="${#lists.isEmpty(contacts)}"
+         class="max-w-3xl mx-auto mb-10">
+        <div class="rounded-2xl bg-conic-30 border border-slate-200 p-6 text-center shadow-sm">
+            <h2 class="text-lg font-semibold text-blue-400 mb-2"  th:text="'You Have no Contacts to show, ' + ${user.name}">
+                You have no contacts to show
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">
+                Start by adding your first contact below.
+            </p>
+        </div>
+    </div>
+
+    <!-- Add Contact Card -->
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white border border-slate-200 shadow-md rounded-3xl p-6 md:p-8">
+
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold
+                           bg-gradient-to-r from-sky-500 to-indigo-500
+                           bg-clip-text text-transparent">
+                    Add New Contact
+                </h1>
+                <p class="text-sm text-slate-500 mt-1">
+                    Store contact details securely and neatly
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form th:action="@{/user/save-contact}"
+                  method="post"
+                  enctype="multipart/form-data"
+                  class="space-y-6">
+
+                <!-- Profile Image -->
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+                        <!-- User Icon -->
+                        <svg class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"/>
+                        </svg>
+                    </div>
+
+                    <label class="text-sm font-medium text-slate-600 mb-1">
+                        Upload Profile Picture
+                    </label>
+                    <input type="file" name="profileImage"
+                           class="text-sm text-slate-500
+                                  file:mr-4 file:py-2 file:px-4
+                                  file:rounded-lg file:border-0
+                                  file:bg-sky-50 file:text-sky-600
+                                  hover:file:bg-sky-100 transition">
+                </div>
+
+                <!-- Name & Email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="form-label">
+                            Name
+                        </label>
+                        <input type="text" name="name" required class="form-input">
+                    </div>
+                    <div>
+                        <label class="form-label">
+                            Email
+                        </label>
+                        <input type="email" name="email" required class="form-input">
+                    </div>
+                </div>
+
+                <!-- Phones -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="form-label">
+                            Phone Number 1
+                        </label>
+                        <input type="tel" name="phone1" class="form-input">
+                    </div>
+                    <div>
+                        <label class="form-label">
+                            Phone Number 2
+                        </label>
+                        <input type="tel" name="phone2" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label class="form-label">
+                        Address
+                    </label>
+                    <textarea name="address" rows="3"
+                              class="form-input resize-none"></textarea>
+                </div>
+
+                <!-- Role -->
+                <div>
+                    <label class="form-label">
+                        Role
+                    </label>
+                    <input type="text" name="role"
+                           placeholder="Friend, Client, Colleague"
+                           class="form-input">
+                </div>
+
+                <!-- Save Button -->
+                <div class="flex justify-center pt-6">
+                    <button type="submit"
+                            class="group flex items-center gap-2 px-8 py-3
+                                   rounded-xl font-semibold text-white
+                                   bg-gradient-to-r from-sky-500 to-indigo-500
+                                   hover:from-sky-600 hover:to-indigo-600
+                                   shadow-md hover:shadow-lg
+                                   transition-all duration-300">
+
+                        <!-- Save Icon -->
+                        <svg class="w-5 h-5 group-hover:scale-110 transition"
+                             fill="none" stroke="currentColor" stroke-width="1.5"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M17 16l4-4m0 0l-4-4m4 4H7"/>
+                        </svg>
+
+                        Save Contact
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Tailwind Reusable Styles -->
+<style>
+    .form-label {
+        @apply block text-sm font-medium text-slate-600 mb-1;
+    }
+    .form-input {
+        @apply w-full px-4 py-2.5 rounded-xl
+               border border-slate-300
+               bg-slate-50 text-slate-700
+               placeholder:text-slate-400
+               focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent
+               transition;
+    }
+</style>
+
+</body>
+</html>
