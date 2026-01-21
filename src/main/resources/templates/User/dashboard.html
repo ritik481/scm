@@ -1,15 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>this is user dashboard</h1>
-    <a th:href="@{'/logout'}">Logout</a>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
@@ -51,6 +39,13 @@
                     <i class="fa-solid fa-phone text-indigo-500"></i>
                     <span th:text="${user.phoneNumber}">+91 98765 43210</span>
                 </p>
+          <button type="button"
+              onclick="window.location.href='/user/profile'"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg
+               transition-all shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-plus text-sm"></i>
+    <span>Edit Profile</span>
+</button>
             </div>
 
             <div class="hidden lg:block mt-auto w-full p-4 bg-indigo-50 rounded-xl border border-indigo-100">
@@ -65,10 +60,14 @@
                     <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">Your Contacts</h1>
                     <p class="text-slate-500">Manage and connect with your network.</p>
                 </div>
-                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-all shadow-md flex items-center gap-2">
-                    <i class="fa-solid fa-plus text-sm"></i>
-                    <span>New</span>
-                </button>
+               <button type="button"
+        onclick="window.location.href='/user/addcontact'"
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg
+               transition-all shadow-md flex items-center gap-2">
+    <i class="fa-solid fa-plus text-sm"></i>
+    <span>New</span>
+</button>
+
             </header>
 
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex-grow flex flex-col">
