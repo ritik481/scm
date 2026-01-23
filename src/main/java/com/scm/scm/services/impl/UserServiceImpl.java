@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.scm.scm.entities.Contact;
 import com.scm.scm.entities.User;
 import com.scm.scm.helpers.AppConstants;
 import com.scm.scm.helpers.ResourceNotFoundException;
+import com.scm.scm.repositories.ContactRepo;
 import com.scm.scm.repositories.UserRepo;
 import com.scm.scm.services.UserService;
 
@@ -21,7 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
-    
+
+    @Autowired
+    private ContactRepo contactRepo;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -93,6 +98,28 @@ public class UserServiceImpl implements UserService {
     public boolean isUserExistsByPhoneNumber(String phoneNumber) {
         User user2= userRepo.findByPhoneNumber(phoneNumber).orElse(null);
         return user2!=null ? true : false;
+    }
+
+    // Contact related methods
+    @Override
+    public Contact saveContact(Contact contact) {
+        return contactRepo.save(contact);
+    }
+
+    @Override
+    public List<Contact> getContactsByUser(User user) {
+        return contactRepo.findByUser(user);
+    }
+
+    @Override
+    public Contact getContactById(String contactId) {
+        return contactRepo.findById(contactId).orElseThrow(() -> new ResourceNotFoundException("Contact not found"));
+    }
+
+    @Override
+    public void deleteContact(String contactId) {
+        Contact contact = contactRepo.findById(contactId).orElseThrow(() -> new ResourceNotFoundException("Contact not found"));
+        contactRepo.delete(contact);
     }
 
 

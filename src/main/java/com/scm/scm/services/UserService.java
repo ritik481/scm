@@ -3,6 +3,7 @@ package com.scm.scm.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.scm.scm.entities.Contact;
 import com.scm.scm.entities.User;
 
 public interface UserService {
@@ -15,4 +16,10 @@ public interface UserService {
     boolean isUserExists(String userId);
     User getUserByEmail(String email);
     List<User> getAllUsers();
+
+    // Contact related methods
+    Contact saveContact(Contact contact);
+    List<Contact> getContactsByUser(User user);
+    Contact getContactById(String contactId);
+    void deleteContact(String contactId);
 }

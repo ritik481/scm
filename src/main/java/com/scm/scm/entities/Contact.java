@@ -10,8 +10,18 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 
 public class Contact {
 
@@ -25,6 +35,8 @@ public class Contact {
     private boolean favorite=false;
     private String websiteLink;
     private String Linkedin;
+    private String profilePic;
+    private String phone2;
 
     @ManyToOne
     private User user;

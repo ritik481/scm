@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.scm.scm.entities.Contact;
 import com.scm.scm.entities.User;
 import com.scm.scm.forms.UserForm;
 import com.scm.scm.helpers.Message;
@@ -167,6 +169,62 @@ public class UserController {
         }
         session.invalidate();
         return "redirect:/login";
+    }
+
+    // save contact
+    @RequestMapping(value = "/save-contact", method = RequestMethod.POST)
+    public String saveContact(@RequestParam("name") String name,
+                              @RequestParam("email") String email,
+                              @RequestParam("phone1") String phone1,
+                              @RequestParam("phone2") String phone2,
+                              @RequestParam("address") String address,
+                              @RequestParam("role") String role,
+                              @RequestParam("profileImage") MultipartFile profileImage,
+                              Authentication authentication,
+                              RedirectAttributes redirectAttributes) {
+        String userEmail;
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            userEmail = oauthToken.getPrincipal().getAttribute("email");
+        } else {
+            userEmail = authentication.getName();
+        }
+        User user = userService.getUserByEmail(userEmail);
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // Create contact
+        Contact contact = new Contact();
+        contact.setName(name);
+        contact.setEmail(email);
+        contact.setPhoneNumber(phone1);
+        contact.setPhone2(phone2);
+        contact.setAddress(address);
+        contact.setDescription(role); // Using description for role
+        contact.setUser(user);
+
+        // Handle file upload
+        if (!profileImage.isEmpty()) {
+            try {
+                String uploadDir = "src/main/resources/static/images/";
+                File directory = new File(uploadDir);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                String fileName = UUID.randomUUID().toString() + "_" + profileImage.getOriginalFilename();
+                Path path = Paths.get(uploadDir + fileName);
+                Files.copy(profileImage.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                contact.setProfilePic("/images/" + fileName);
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("message", Message.builder().content("Image upload failed").type(MessageType.red).build());
+                return "redirect:/user/addcontact";
+            }
+        }
+
+        userService.saveContact(contact);
+        redirectAttributes.addFlashAttribute("message", Message.builder().content("Contact saved successfully").type(MessageType.green).build());
+        return "redirect:/user/addcontact";
     }
 
     //user add contactpage
