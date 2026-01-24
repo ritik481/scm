@@ -1,13 +1,13 @@
 package com.scm.scm.repositories;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.scm.scm.entities.User;
 
 @Repository
-public interface UserRepo extends JpaRepository<User, String> {
+public interface UserRepo extends MongoRepository<User, String> {
 
 
     Optional<User> findByEmail(String email);

@@ -1,9 +1,9 @@
 package com.scm.scm.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,15 +15,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Document(collection = "social_links")
 
 public class SocialLink {
     @Id
-    private long id;
+    private String id;
     private String link;
     private String title;
-    @ManyToOne
-@JoinColumn(name = "contact_id")
-private Contact contact;
+    @DBRef
+    private Contact contact;
 
 }
